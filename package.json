@@ -1,0 +1,57 @@
+{
+  "name": "@intelligems/third-party-integrations",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Intelligems",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.cjs",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "exports": {
+    "./candy-rack/*": {
+      "import": {
+        "types": "./dist/candy-rack/*.d.ts",
+        "default": "./dist/candy-rack/*.mjs"
+      },
+      "require": {
+        "types": "./dist/candy-rack/*.d.cts",
+        "default": "./dist/candy-rack/*.cjs"
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "candy-rack": [
+        "./dist/candy-rack/*.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "tsup --config tsup.config.ts --watch",
+    "build:dev": "tsup --config tsup.config.ts",
+    "build:prod": "NODE_ENV=production tsup --config tsup.config.ts",
+    "pack:prod": "yarn run build:prod && npm pack",
+    "deploy:cdn": "yarn run build:prod && aws s3 sync dist/integrations s3://cdn.intelligems.io/third-party --exclude \"*\" --include \"*.cjs\"",
+    "deploy:npm": "yarn pack:prod && npm publish --tag latest",
+    "lint": "eslint . --ext .ts,.tsx --config eslint.config.js",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix --config eslint.config.js",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.57",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "globals": "^16.2.0",
+    "prettier": "^3.5.3",
+    "tiny-glob": "^0.2.9",
+    "tsup": "^8.5.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.33.0"
+  }
+}

@@ -1,0 +1,10 @@
+src/
+scripts/
+codegen.yml
+stats.html
+tsconfig.tsbuildinfo
+.babelrc
+.eslintrc.js
+.lintstagedrc.json
+.env.*
+*.backup

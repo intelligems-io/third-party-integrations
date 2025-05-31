@@ -1,9 +1,11 @@
 declare global {
   interface Window {
-    igData: any
+    igData: any;
     igCandyRack?: {
-      iFrameQuerySelector: string
-      origin: string
-    }
+      iFrameQuerySelector: string;
+      origin: string;
+    };
   }
 }
+
+export {};
