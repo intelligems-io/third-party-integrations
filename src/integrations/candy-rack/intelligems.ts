@@ -3,7 +3,7 @@ import {IframeIgDataMessengerType} from "@src/types/iframe-ig-data-messenger";
 
 export class IntelligemsToCandyRackMessenger extends IntelligemsToIframeMessenger<IframeIgDataMessengerType> {
   constructor(frameQuerySelector: string, targetOrigin: string) {
-    super(frameQuerySelector, targetOrigin, ["INTELLIGEMS_TO_CANDY_RACK"], (event: IframeIgDataMessengerType, messenger: IntelligemsToCandyRackMessenger) => {
+    super(frameQuerySelector, targetOrigin, ["INTELLIGEMS_TO_CANDY_RACK", "CANDY_RACK_TO_INTELLIGEMS"], (event: IframeIgDataMessengerType, messenger: IntelligemsToCandyRackMessenger) => {
       messenger._onMessage(event);
     });
   }

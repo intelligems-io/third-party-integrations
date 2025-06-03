@@ -19,13 +19,13 @@ export abstract class BaseMessenger<T extends MessengerPayload> {
       }
       // Validate event.data shape
       if (!event.data || typeof event.data !== "object" || typeof (event.data as any).type !== "string") {
-        console.warn("Invalid message data shape", event.data);
+        // console.warn("Invalid message data shape", event.data);
         return;
       }
       // Optionally, subclasses should check event.source
       if (this.allowedDataTypes.includes((event.data as any).type)) {
         try {
-          this.onMessage(event.data, this);
+          this.onMessage(event as any, this);
         } catch (err) {
           console.error("Error in onMessage callback", err);
         }

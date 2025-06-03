@@ -3,6 +3,6 @@ import {OnMessageType} from "@src/types/iframe-ig-data-messenger";
 
 export class CandyRackToIntelligemsMessenger extends IframeToIntelligemsMessenger {
   constructor(parentOrigin: string, onMessage: OnMessageType) {
-    super(parentOrigin, onMessage, ["CANDY_RACK_TO_INTELLIGEMS"]);
+    super(parentOrigin, onMessage, ["CANDY_RACK_TO_INTELLIGEMS", "INTELLIGEMS_TO_CANDY_RACK"]);
   }
 }

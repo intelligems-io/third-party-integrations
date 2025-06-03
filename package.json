@@ -33,12 +33,14 @@
     "dev": "tsup --config tsup.config.ts --watch",
     "build:dev": "tsup --config tsup.config.ts",
     "build:prod": "NODE_ENV=production tsup --config tsup.config.ts",
+    "build": "yarn build:prod",
     "pack:prod": "yarn run build:prod && npm pack",
-    "deploy:cdn": "yarn run build:prod && aws s3 sync dist/integrations s3://cdn.intelligems.io/third-party --exclude \"*\" --include \"*.cjs\"",
+    "deploy:cdn": "yarn run build:prod && aws s3 sync dist/cdn s3://cdn.intelligems.io/third-party --exclude \"*\" --include \"*.cjs\"",
     "deploy:npm": "yarn pack:prod && npm publish --tag latest",
     "lint": "eslint . --ext .ts,.tsx --config eslint.config.js",
     "lint:fix": "eslint . --ext .ts,.tsx --fix --config eslint.config.js",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "candy-rack-example": "yarn dlx http-server . -p 8080"
   },
   "devDependencies": {
     "@types/node": "^20.17.57",
